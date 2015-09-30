@@ -37,7 +37,6 @@ p_free(Piece_Descriptor *p)
   free(p); 
 }
 
-Piece_Description
 /*
 typedef struct {
   int len;
