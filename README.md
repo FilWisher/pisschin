@@ -1,6 +1,8 @@
 # pisschin
 A short excursion away from [wed](https://github.com/FilWisher/pisschin/tree/master) to better understand piece-chains
 
+`
+
 ## huh?
 Piece-chains are a structure for managing text. 
 
@@ -40,4 +42,6 @@ The collection of Piece\_Descriptors forms a doubly-linked list. This means that
 
 A piece table is a data structure
 
+
+## sources
 [0] [Data Structures for Text Sequences - Charles Crowley](https://www.cs.unm.edu/~crowley/papers/sds.pdf)
