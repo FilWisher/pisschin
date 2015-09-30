@@ -108,7 +108,7 @@ p\_\* functions are for pieces
 ```
 ```c
   /* frees a single piece's allocated memory */
-	p_free(Piece p);
+	void p_free(Piece p);
 ```
 ## sources
 [0] [Data Structures for Text Sequences - Charles Crowley](https://www.cs.unm.edu/~crowley/papers/sds.pdf)
