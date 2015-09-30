@@ -1,5 +1,5 @@
 /*
- * Implements a doubly-linked list of Pieces (piece-chain)
+ * Implements a doubly-linked list of Pieces (piece-text)
  */
 
 #include <stdio.h>
@@ -21,17 +21,22 @@ typedef struct pd {
 
 typedef Piece_Descriptor *Piece;
 
+/* text is our access to the text */
 typedef struct {
   int len;
-  Piece head;
-  Piece tail;
-} Chain;
+  Piece head; /* head is the first item in the text */
+  Piece tail; /* tail is the last item in teh text */
+} Text;
 
 Piece_Descriptor *p_alloc(void);
-void p_free(Piece);
-int file_size(int);
+Piece p_load_file(char *, Piece, Piece);
 void p_print(Piece);
-void print_chain(Chain *);
+void p_free(Piece);
+
+Text t_load_file(char *);
+void t_print(Text);
+void t_cleanup(Text);
+
 int file_size(int);
 
 Piece
@@ -60,9 +65,9 @@ p_print(Piece p)
 }
 
 void
-print_chain(Chain *chain)
+t_print(Text text)
 {
-  Piece p = chain->head;
+  Piece p = text.head;
   do {
     p_print(p);
     p = p->next;
@@ -78,7 +83,7 @@ file_size(int file)
 }
 
 Piece
-load_file(char *name, Piece prev, Piece next)
+p_load_file(char *name, Piece prev, Piece next)
 {
   Piece p = p_alloc();
   p->file = open(name, O_RDONLY, 0);
@@ -90,21 +95,29 @@ load_file(char *name, Piece prev, Piece next)
   return p;
 }
 
+Text
+t_load_file(char *name)
+{
+  Text t;
+  Piece p = p_load_file(name, NULL, NULL);
+  t.head = t.tail = p;
+  t.len = 3;
+  return t; 
+}
+
+void
+t_cleanup(Text t)
+{
+  p_free(t.head);
+}
+
 int
 main(int argc, char *argv[])
 {
-  Piece first_piece = load_file("as.txt", NULL, NULL);
-  Piece second_piece = load_file("bs.txt", first_piece, NULL);
-  Piece third_piece = load_file("cs.txt", second_piece, NULL);
-  
-  Chain chain = {
-    .len = 3,
-    .head = first_piece,
-    .tail = third_piece
-  };
+  Text text = t_load_file(argv[1]);
 
-  print_chain(&chain);
+  t_print(text);
 
-  p_free(first_piece);
+  t_cleanup(text);
   return 0;
 }

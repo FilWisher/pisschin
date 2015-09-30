@@ -78,5 +78,13 @@ int text_pos_to_pc_pos(Piece p, int text_pos);
 
 These simple things will require slightly more code than if we were working with a buffer but it will pay off in performance. 
 
+## code
+t\_\* functions are for texts
+f\_\* functions are for files
+p\_\* funtions are for pieces
+	p_alloc
+	p_free
+	p_print
+
 ## sources
 [0] [Data Structures for Text Sequences - Charles Crowley](https://www.cs.unm.edu/~crowley/papers/sds.pdf)
