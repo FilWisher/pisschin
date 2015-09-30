@@ -1,5 +1,5 @@
 # pisschin
-A short excursion away from filwisher/wed to better understand piece-chains
+A short excursion away from [wed](https://github.com/FilWisher/pisschin/tree/master) to better understand piece-chains
 
 ## huh?
 Piece-chains are a structure for managing text. 
