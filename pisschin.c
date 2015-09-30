@@ -34,9 +34,9 @@ void p_print(Piece);
 void print_chain(Chain *);
 int file_size(int);
 
-Piece_Descriptor *
+Piece
 p_alloc(void) {
-  return (Piece_Descriptor *)malloc(sizeof(Piece_Descriptor));
+  return (Piece)malloc(sizeof(Piece_Descriptor));
 }
 
 void
@@ -82,10 +82,11 @@ load_file(char *name, Piece prev, Piece next)
 {
   Piece p = p_alloc();
   p->file = open(name, O_RDONLY, 0);
-  p->name = name;
   p->len = file_size(p->file);
   p->prev = prev;
+  if (prev != NULL) prev->next = p;
   p->next = next;
+  if (next != NULL) next->prev = p;
   return p;
 }
 
@@ -95,8 +96,6 @@ main(int argc, char *argv[])
   Piece first_piece = load_file("as.txt", NULL, NULL);
   Piece second_piece = load_file("bs.txt", first_piece, NULL);
   Piece third_piece = load_file("cs.txt", second_piece, NULL);
-  first_piece->next = second_piece;
-  second_piece->next = third_piece;
   
   Chain chain = {
     .len = 3,

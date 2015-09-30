@@ -28,20 +28,53 @@ typedef Piece_Descriptor *Piece;
 A Piece_Descriptor is a struct with a file descriptor, a position, a length, pointer to the next Piece_Descriptor, and a pointer to the previous Piece_Descriptor:
 
 ```c
-typedef struct {
+typedef struct piece_descriptor {
 	int file; /* file descriptor */
 	int pos;
 	int len;
-	void *next;
-	void *prev;
+	piece_descriptor *next;
+	piece_descriptor prev;
 } Piece_Descriptor;
 ```
 
 The collection of Piece\_Descriptors forms a doubly-linked list. This means that the Piece\_Descriptors needn't be contiguous in memory. 
 
 
-A piece table is a data structure
+A piece chain is a created by pointing the .next value of piece descriptor A at another piece descriptor B. Piece descriptor B should also have its .prev value set to a pointer to piece descriptor B and, if it is the final piece descriptor, it's .next value should be set to NULL.
 
+```c
+Piece
+load_file(char *name, Piece prev, Piece next)
+{
+  Piece p = p_alloc();
+  p->file = open(name, O_RDONLY, 0);
+  p->len = file_size(p->file);
+  p->prev = prev;
+  if (prev != NULL) prev->next = p;
+  p->next = next;
+  if (next != NULL) next->prev = p;
+  return p;
+}
+
+/* ... */
+
+	Piece first_piece = load_file("as.txt", NULL, NULL);
+	Piece second_piece = load_file("bs.txt", first_piece, NULL);
+```
+
+## now what?
+Once we have a piece chain constructed, there a few simple things we want to do with it:
+- Map a position in the text to a position in the piece chain:
+```c
+int text_pos_to_pc_pos(Piece p, int text_pos);
+```
+- Insert new pieces anywhere in the chain
+- Delete pieces anywhere in the chain
+- Write piece chain (text) to file
+- Render piece chain (text) on screen
+- Send piece chain (text) to another process
+
+These simple things will require slightly more code than if we were working with a buffer but it will pay off in performance. 
 
 ## sources
 [0] [Data Structures for Text Sequences - Charles Crowley](https://www.cs.unm.edu/~crowley/papers/sds.pdf)
