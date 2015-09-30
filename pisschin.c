@@ -28,7 +28,7 @@ typedef struct {
   Piece tail; /* tail is the last item in teh text */
 } Text;
 
-Piece_Descriptor *p_alloc(void);
+Piece p_alloc(void);
 Piece p_load_file(char *, Piece, Piece);
 void p_print(Piece);
 void p_free(Piece);

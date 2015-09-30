@@ -80,11 +80,25 @@ These simple things will require slightly more code than if we were working with
 
 ## code
 t\_\* functions are for texts
-f\_\* functions are for files
-p\_\* funtions are for pieces
-	p_alloc
-	p_free
-	p_print
+```c
+  /* returns Text struct with single piece */
+  Text t_load_file(char *name);
+  /* prints entire piece chain (text) */
+  void t_print(Text t);
+  /* frees entire piece chain (text) */
+  void t_free(Text t);
+```
 
+p\_\* funtions are for pieces
+```c
+  /* returns address of piece sized memory on heap */
+	Piece_p_alloc(void);
+  /* returns new piece */
+	Piece p_load_file(char *name, Piece prev, Piece next);
+  /* prints a piece to stdout */
+	void p_print(Piece p);
+  /* frees a single piece's allocated memory */
+	p_free(Piece p);
+```
 ## sources
 [0] [Data Structures for Text Sequences - Charles Crowley](https://www.cs.unm.edu/~crowley/papers/sds.pdf)
