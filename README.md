@@ -110,5 +110,12 @@ p\_\* functions are for pieces
   /* frees a single piece's allocated memory */
 	void p_free(Piece p);
 ```
+```c
+  /* Returns a Location with corresponding .piece and .offset to pos  */
+	Location p_location_of(Text t, int pos);
+```
+
+/* takes a file descriptor and returns it size  */
+int file_size(int file);
 ## sources
 [0] [Data Structures for Text Sequences - Charles Crowley](https://www.cs.unm.edu/~crowley/papers/sds.pdf)
