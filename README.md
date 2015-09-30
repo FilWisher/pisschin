@@ -1,7 +1,7 @@
 # pisschin
 A short excursion away from [wed](https://github.com/FilWisher/pisschin/tree/master) to better understand piece-chains
 
-`
+More detailed sources at the end of this document.
 
 ## huh?
 Piece-chains are a structure for managing text. 
