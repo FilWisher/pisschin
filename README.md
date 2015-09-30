@@ -1,6 +1,8 @@
 # pisschin
 A short excursion away from [wed](https://github.com/FilWisher/pisschin/tree/master) to better understand piece-chains
 
+[Imgur](http://i.imgur.com/yn6univ.png)
+
 More detailed sources at the end of this document.
 
 ## huh?
