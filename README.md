@@ -83,20 +83,30 @@ t\_\* functions are for texts
 ```c
   /* returns Text struct with single piece */
   Text t_load_file(char *name);
+```
+```c
   /* prints entire piece chain (text) */
   void t_print(Text t);
+```
+```c
   /* frees entire piece chain (text) */
   void t_free(Text t);
 ```
 
-p\_\* funtions are for pieces
+p\_\* functions are for pieces
 ```c
   /* returns address of piece sized memory on heap */
 	Piece_p_alloc(void);
+```
+```c
   /* returns new piece */
 	Piece p_load_file(char *name, Piece prev, Piece next);
+```
+```c
   /* prints a piece to stdout */
 	void p_print(Piece p);
+```
+```c
   /* frees a single piece's allocated memory */
 	p_free(Piece p);
 ```
