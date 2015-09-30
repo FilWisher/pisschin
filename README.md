@@ -79,6 +79,14 @@ int text_pos_to_pc_pos(Piece p, int text_pos);
 These simple things will require slightly more code than if we were working with a buffer but it will pay off in performance. 
 
 ## code
+
+### data types
+Location
+Text
+Piece
+Piece\_Descriptor
+
+### functions
 t\_\* functions are for texts
 ```c
   /* returns Text struct with single piece */
