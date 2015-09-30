@@ -93,6 +93,12 @@ t\_\* functions are for texts
   void t_free(Text t);
 ```
 
+e\_\* functions are for text editing
+```c
+  /* deletes part of text */
+  void e_delete(Location loc);
+```
+
 p\_\* functions are for pieces
 ```c
   /* returns address of piece sized memory on heap */

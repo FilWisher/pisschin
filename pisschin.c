@@ -48,7 +48,7 @@ void t_print(Text);
 void t_cleanup(Text);
 
 /* e_* functions for editing */
-void t_delete(Location);
+void e_delete(Location);
 
 int file_size(int);
 
@@ -173,7 +173,7 @@ p_make(int file, int pos, int len, Piece prev, Piece next)
  *       \ [ ] -- [ ] /
  */
 void
-t_delete(Location loc) {
+e_delete(Location loc) {
 
   Piece p = loc.piece;
   Piece before_del = p_make(p->file, p->pos, (loc.offset -1), p->prev, NULL);
@@ -208,7 +208,7 @@ main(int argc, char *argv[])
     .piece = p_2,
     .offset = 9 
   };
-  t_delete(d_loc); 
+  e_delete(d_loc); 
   t_print(text);
 
   t_cleanup(text);
